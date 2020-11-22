@@ -51,6 +51,12 @@ func TestAddingFractions(t *testing.T) {
 			rightAddend: fraction.NewFraction(-5, 1),
 			sum:         fraction.NewFraction(3, 1),
 		},
+		{
+			name:        "fractions adding to 1",
+			leftAddend:  fraction.NewFraction(1, 3),
+			rightAddend: fraction.NewFraction(2, 3),
+			sum:         fraction.NewFraction(1, 1),
+		},
 	}
 
 	for _, testCase := range testCases {
