@@ -15,7 +15,7 @@ func NewFraction(numerator, denominator int) Fraction {
 
 func (f Fraction) Add(addend Fraction) Fraction {
 	return Fraction{
-		numerator:   0,
+		numerator:   f.numerator + addend.numerator,
 		denominator: 1,
 	}
 }

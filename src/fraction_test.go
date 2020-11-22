@@ -21,6 +21,24 @@ func TestAddingFractions(t *testing.T) {
 			rightAddend: fraction.NewFraction(0, 1),
 			sum:         fraction.NewFraction(0, 1),
 		},
+		{
+			name:        "non-zero and zero whole numbers",
+			leftAddend:  fraction.NewFraction(5, 1),
+			rightAddend: fraction.NewFraction(0, 1),
+			sum:         fraction.NewFraction(5, 1),
+		},
+		{
+			name:        "zero and non-zero whole numbers",
+			leftAddend:  fraction.NewFraction(0, 1),
+			rightAddend: fraction.NewFraction(8, 1),
+			sum:         fraction.NewFraction(8, 1),
+		},
+		{
+			name:        "non-zero whole numbers",
+			leftAddend:  fraction.NewFraction(3, 1),
+			rightAddend: fraction.NewFraction(4, 1),
+			sum:         fraction.NewFraction(7, 1),
+		},
 	}
 
 	for _, testCase := range testCases {
