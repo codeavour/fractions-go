@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-//nolint: scopelint
+//nolint: scopelint, funlen
 func TestAddingFractions(t *testing.T) {
 	testCases := []struct {
 		name        string
