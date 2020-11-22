@@ -4,10 +4,10 @@ import (
 	"testing"
 
 	fraction "github.com/codeavour/fractions-go/src"
-
 	"github.com/stretchr/testify/assert"
 )
 
+//nolint: scopelint
 func TestAddingFractions(t *testing.T) {
 	testCases := []struct {
 		name        string
