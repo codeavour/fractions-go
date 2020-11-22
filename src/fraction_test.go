@@ -39,6 +39,18 @@ func TestAddingFractions(t *testing.T) {
 			rightAddend: fraction.NewFraction(4, 1),
 			sum:         fraction.NewFraction(7, 1),
 		},
+		{
+			name:        "negative left whole number addend",
+			leftAddend:  fraction.NewFraction(-3, 1),
+			rightAddend: fraction.NewFraction(1, 1),
+			sum:         fraction.NewFraction(-2, 1),
+		},
+		{
+			name:        "negative right whole number addend",
+			leftAddend:  fraction.NewFraction(8, 1),
+			rightAddend: fraction.NewFraction(-5, 1),
+			sum:         fraction.NewFraction(3, 1),
+		},
 	}
 
 	for _, testCase := range testCases {
