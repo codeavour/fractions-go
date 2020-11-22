@@ -16,7 +16,7 @@ func TestAddingFractions(t *testing.T) {
 		sum         fraction.Fraction
 	}{
 		{
-			name:        "zero fractions",
+			name:        "zero whole numbers",
 			leftAddend:  fraction.NewFraction(0, 1),
 			rightAddend: fraction.NewFraction(0, 1),
 			sum:         fraction.NewFraction(0, 1),
