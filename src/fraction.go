@@ -27,6 +27,15 @@ func (f Fraction) Add(addend Fraction) Fraction {
 	return res.reduce()
 }
 
+func (f Fraction) reduce() Fraction {
+	highCommonDenom := highestCommonDenominator(f.numerator, f.denominator)
+
+	return Fraction{
+		numerator:   f.numerator / highCommonDenom,
+		denominator: f.denominator / highCommonDenom,
+	}
+}
+
 func lowestCommonDenominator(da, db int) (int, int) {
 	ra := da
 	rb := db
@@ -43,13 +52,30 @@ func lowestCommonDenominator(da, db int) (int, int) {
 	return ra / da, rb / db
 }
 
-func (f Fraction) reduce() Fraction {
-	if f.numerator%f.denominator == 0 {
-		return Fraction{
-			numerator:   f.numerator / f.denominator,
-			denominator: 1,
-		}
+func highestCommonDenominator(da, db int) int {
+	d := minInts(da, db)
+
+	for d > 1 && (da%d != 0 || db%d != 0) {
+		d--
 	}
 
-	return f
+	return clampInt(d, 1, d)
+}
+
+func minInts(a, b int) int {
+	if a <= b {
+		return a
+	}
+
+	return b
+}
+
+func clampInt(x, min, max int) int {
+	if x < min {
+		return min
+	} else if x > max {
+		return max
+	}
+
+	return x
 }
