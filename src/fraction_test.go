@@ -57,6 +57,12 @@ func TestAddingFractions(t *testing.T) {
 			rightAddend: fraction.NewFraction(2, 3),
 			sum:         fraction.NewFraction(1, 1),
 		},
+		{
+			name:        "different denominators where one is multiple of the other",
+			leftAddend:  fraction.NewFraction(3, 4),
+			rightAddend: fraction.NewFraction(5, 8),
+			sum:         fraction.NewFraction(11, 8),
+		},
 	}
 
 	for _, testCase := range testCases {
