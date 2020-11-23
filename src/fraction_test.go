@@ -75,6 +75,12 @@ func TestAddingFractions(t *testing.T) {
 			rightAddend: fraction.NewFraction(3, 4),
 			sum:         fraction.NewFraction(3, 2),
 		},
+		{
+			name:        "same denominators result requiring reduction",
+			leftAddend:  fraction.NewFraction(3, 8),
+			rightAddend: fraction.NewFraction(1, 8),
+			sum:         fraction.NewFraction(1, 2),
+		},
 	}
 
 	for _, testCase := range testCases {
