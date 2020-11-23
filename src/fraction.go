@@ -28,23 +28,19 @@ func (f Fraction) Add(addend Fraction) Fraction {
 }
 
 func lowestCommonDenominator(da, db int) (int, int) {
-	ma := 1
-	mb := 1
+	ra := da
+	rb := db
 
-	for {
-		ra := da * ma
-		rb := db * mb
-
-		if ra < rb {
-			ma++
-		} else if rb < ra {
-			mb++
-		} else {
-			break
+	for ra != rb {
+		switch {
+		case ra < rb:
+			ra += da
+		case rb < ra:
+			rb += db
 		}
 	}
 
-	return ma, mb
+	return ra / da, rb / db
 }
 
 func (f Fraction) reduce() Fraction {
