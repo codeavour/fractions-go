@@ -93,6 +93,18 @@ func TestAddingFractions(t *testing.T) {
 			rightAddend: fraction.NewFraction(3, 4),
 			sum:         fraction.NewFraction(1, 2),
 		},
+		{
+			name:        "one fraction with negative numerator resulting in negative fraction",
+			leftAddend:  fraction.NewFraction(3, 8),
+			rightAddend: fraction.NewFraction(-1, 2),
+			sum:         fraction.NewFraction(-1, 8),
+		},
+		{
+			name:        "one fraction with negative denominator resulting in negative fraction",
+			leftAddend:  fraction.NewFraction(3, 8),
+			rightAddend: fraction.NewFraction(1, -2),
+			sum:         fraction.NewFraction(-1, 8),
+		},
 	}
 
 	for _, testCase := range testCases {
