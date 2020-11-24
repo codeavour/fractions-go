@@ -9,9 +9,14 @@ type Fraction struct {
 
 // NewFraction create a Fraction object from numerator and denominator.
 func NewFraction(numerator, denominator int) Fraction {
+	nm := 1
+	if denominator < 0 {
+		nm = -1
+	}
+
 	return Fraction{
-		numerator:   numerator,
-		denominator: denominator,
+		numerator:   numerator * nm,
+		denominator: denominator * nm,
 	}
 }
 
