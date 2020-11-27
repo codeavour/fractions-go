@@ -7,6 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+//nolint: scopelint
 func TestFractionEquality(t *testing.T) {
 	testCases := []struct {
 		name     string
