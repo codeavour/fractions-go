@@ -13,11 +13,11 @@ func NewFraction(numerator, denominator int) Fraction {
 	denominatorSign := signOf(denominator)
 
 	positiveDenominator := denominator * denominatorSign
-	highCommonDenom := highestCommonDenominator(numerator*numeratorSign, positiveDenominator)
+	highestCommonDivisor := highestCommonDivisor(numerator*numeratorSign, positiveDenominator)
 
 	return Fraction{
-		numerator:   numerator * denominatorSign / highCommonDenom,
-		denominator: positiveDenominator / highCommonDenom,
+		numerator:   numerator * denominatorSign / highestCommonDivisor,
+		denominator: positiveDenominator / highestCommonDivisor,
 	}
 }
 
@@ -26,7 +26,7 @@ func (f Fraction) Add(addend Fraction) Fraction {
 	return NewFraction(f.numerator*addend.denominator+addend.numerator*f.denominator, f.denominator*addend.denominator)
 }
 
-func highestCommonDenominator(da, db int) int {
+func highestCommonDivisor(da, db int) int {
 	d := minInts(da, db)
 
 	for d > 1 && (da%d != 0 || db%d != 0) {
