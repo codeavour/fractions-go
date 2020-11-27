@@ -15,7 +15,12 @@ func TestFractionEquality(t *testing.T) {
 		expected fraction.Fraction
 	}{
 		{
-			name:     "two fractions that are the same after reducing",
+			name:     "two fractions that are exactly the same",
+			fraction: fraction.NewFraction(8, 10),
+			expected: fraction.NewFraction(8, 10),
+		},
+		{
+			name:     "two fractions that are the exactly the same but only after reducing",
 			fraction: fraction.NewFraction(4, 6),
 			expected: fraction.NewFraction(2, 3),
 		},
@@ -24,6 +29,37 @@ func TestFractionEquality(t *testing.T) {
 	for _, testCase := range testCases {
 		t.Run(testCase.name, func(t *testing.T) {
 			assert.Equal(t, testCase.expected, testCase.fraction, testCase.name)
+		})
+	}
+}
+
+//nolint: scopelint
+func TestFractionInequality(t *testing.T) {
+	testCases := []struct {
+		name     string
+		fraction fraction.Fraction
+		expected fraction.Fraction
+	}{
+		{
+			name:     "two fractions that are only different in the numerator",
+			fraction: fraction.NewFraction(1, 3),
+			expected: fraction.NewFraction(2, 3),
+		},
+		{
+			name:     "two fractions that are only different in the denominator",
+			fraction: fraction.NewFraction(4, 7),
+			expected: fraction.NewFraction(4, 9),
+		},
+		{
+			name:     "two fractions that are different in both the numerator and denominator",
+			fraction: fraction.NewFraction(1, 7),
+			expected: fraction.NewFraction(2, 9),
+		},
+	}
+
+	for _, testCase := range testCases {
+		t.Run(testCase.name, func(t *testing.T) {
+			assert.NotEqual(t, testCase.expected, testCase.fraction, testCase.name)
 		})
 	}
 }
