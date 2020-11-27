@@ -7,6 +7,26 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestFractionEquality(t *testing.T) {
+	testCases := []struct {
+		name     string
+		fraction fraction.Fraction
+		expected fraction.Fraction
+	}{
+		{
+			name:     "two fractions that are the same after reducing",
+			fraction: fraction.NewFraction(4, 6),
+			expected: fraction.NewFraction(2, 3),
+		},
+	}
+
+	for _, testCase := range testCases {
+		t.Run(testCase.name, func(t *testing.T) {
+			assert.Equal(t, testCase.expected, testCase.fraction, testCase.name)
+		})
+	}
+}
+
 //nolint: scopelint, funlen
 func TestAddingFractions(t *testing.T) {
 	testCases := []struct {

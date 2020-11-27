@@ -14,9 +14,14 @@ func NewFraction(numerator, denominator int) Fraction {
 		nm = -1
 	}
 
+	num := numerator * nm
+	denom := denominator * nm
+
+	highCommonDenom := highestCommonDenominator(num, denom)
+
 	return Fraction{
-		numerator:   numerator * nm,
-		denominator: denominator * nm,
+		numerator:   num / highCommonDenom,
+		denominator: denom / highCommonDenom,
 	}
 }
 
@@ -24,21 +29,7 @@ func NewFraction(numerator, denominator int) Fraction {
 func (f Fraction) Add(addend Fraction) Fraction {
 	ma, mb := lowestCommonDenominator(f.denominator, addend.denominator)
 
-	res := Fraction{
-		numerator:   f.numerator*ma + addend.numerator*mb,
-		denominator: f.denominator * ma,
-	}
-
-	return res.reduce()
-}
-
-func (f Fraction) reduce() Fraction {
-	highCommonDenom := highestCommonDenominator(f.numerator, f.denominator)
-
-	return Fraction{
-		numerator:   f.numerator / highCommonDenom,
-		denominator: f.denominator / highCommonDenom,
-	}
+	return NewFraction(f.numerator*ma+addend.numerator*mb, f.denominator*ma)
 }
 
 func lowestCommonDenominator(da, db int) (int, int) {
