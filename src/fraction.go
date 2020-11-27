@@ -27,13 +27,13 @@ func (f Fraction) Add(addend Fraction) Fraction {
 }
 
 func highestCommonDivisor(da, db int) int {
-	d := minInts(da, db)
-
-	for d > 1 && (da%d != 0 || db%d != 0) {
-		d--
+	for db != 0 {
+		t := db
+		db = da % db
+		da = t
 	}
 
-	return clampInt(d, 1, d)
+	return da
 }
 
 func signOf(x int) int {
@@ -42,22 +42,4 @@ func signOf(x int) int {
 	}
 
 	return 1
-}
-
-func minInts(a, b int) int {
-	if a <= b {
-		return a
-	}
-
-	return b
-}
-
-func clampInt(x, min, max int) int {
-	if x < min {
-		return min
-	} else if x > max {
-		return max
-	}
-
-	return x
 }
