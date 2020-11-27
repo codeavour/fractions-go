@@ -9,43 +9,21 @@ type Fraction struct {
 
 // NewFraction create a Fraction object from numerator and denominator.
 func NewFraction(numerator, denominator int) Fraction {
-	nm := 1
-	if denominator < 0 {
-		nm = -1
-	}
+	numeratorSign := signOf(numerator)
+	denominatorSign := signOf(denominator)
 
-	num := numerator * nm
-	denom := denominator * nm
-
-	highCommonDenom := highestCommonDenominator(num, denom)
+	positiveDenominator := denominator * denominatorSign
+	highCommonDenom := highestCommonDenominator(numerator*numeratorSign, positiveDenominator)
 
 	return Fraction{
-		numerator:   num / highCommonDenom,
-		denominator: denom / highCommonDenom,
+		numerator:   numerator * denominatorSign / highCommonDenom,
+		denominator: positiveDenominator / highCommonDenom,
 	}
 }
 
 // Add adds addend to fraction.
 func (f Fraction) Add(addend Fraction) Fraction {
-	ma, mb := lowestCommonDenominator(f.denominator, addend.denominator)
-
-	return NewFraction(f.numerator*ma+addend.numerator*mb, f.denominator*ma)
-}
-
-func lowestCommonDenominator(da, db int) (int, int) {
-	ra := da
-	rb := db
-
-	for ra != rb {
-		switch {
-		case ra < rb:
-			ra += da
-		case rb < ra:
-			rb += db
-		}
-	}
-
-	return ra / da, rb / db
+	return NewFraction(f.numerator*addend.denominator+addend.numerator*f.denominator, f.denominator*addend.denominator)
 }
 
 func highestCommonDenominator(da, db int) int {
@@ -56,6 +34,14 @@ func highestCommonDenominator(da, db int) int {
 	}
 
 	return clampInt(d, 1, d)
+}
+
+func signOf(x int) int {
+	if x < 0 {
+		return -1
+	}
+
+	return 1
 }
 
 func minInts(a, b int) int {
