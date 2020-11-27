@@ -1,4 +1,4 @@
-// Package fraction contains fraction stuff.
+// Package fraction contains code to add mathematical fractions.
 package fraction
 
 // Fraction represents a mathematical fraction.
